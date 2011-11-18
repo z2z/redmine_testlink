@@ -1,0 +1,32 @@
+<h1> <%= t('label.testlink_server') %> </h1>
+<p>
+  <table> 
+  <tr><td> <%= t('label.address') %> </td><td>
+  <%= text_field_tag('settings[testlink_address]', @settings['testlink_address'], :size => 80)%>
+  </td></tr>
+  <tr><td> <%= t('label.version') %> </td><td>
+  <%= select_tag('settings[testlink_version]', options_for_select(['1.8', '1.7'], @settings['testlink_version'])) %>
+  </td></tr>
+  </table>
+</p>
+
+<br>
+<h1> <%= t('label.output_settitle') %> </h1>
+<% baseary = ['toc', 'header', 'summary', 'body', 'author', 'keyword', 'cfields'] %>
+<% for key in ['report', 'planreport'] %>
+    <br>
+    <h3> <%= t("key.#{key}") %> (<%= key %>) </h3>
+    <% ary = baseary + ((key == 'report') ? ['passfail', 'metrics'] : ['testplan']) %>
+    <table>
+    <% for outputitem in ary %>
+        <% name = "default_#{key}_#{outputitem}" %>
+	<tr><td>
+        <%= check_box_tag("settings[#{name}]", 1, @settings[name]) %>
+	</td><td>
+	<%= outputitem %> :
+	</td><td>
+        <%= t("outitem.#{outputitem}") %>
+	</td></tr>
+    <% end %>
+    </table>
+<% end %>

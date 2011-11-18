@@ -1,0 +1,33 @@
+# Redmine TestLink Link
+ja:
+  label:
+    testlink_server: TestLink サーバ設定
+    address: サイトアドレス
+    version: バージョン
+    output_settitle: 省略時の出力項目の設定
+  key:
+    report: テストレポート
+    planreport: テスト計画レポート
+  outitem:
+    toc: 目次
+    header:  テストスイートの説明
+    summary: テストケースの要約
+    body: 本文
+    author: テストケース作者
+    keyword: テストケースに関連するキーワード
+    cfields: テストケースに関連するカスタムフィールド
+    passfail: 成功/失敗と備考
+    metrics: メトリクス
+    testplan: テスト計画の説明
+  error:
+    miss_ver: "\"%s\" は TestLink %s では対応していません。"
+    no_id: ID が設定されていません。
+    no_key: 識別名が設定されていません
+    invalid_key: 不適切な識別名です。
+    invalid_fmt: "\"%s\":不適切なフォーマット名です。[%s]"
+    not_report: 指定された識別名は "%s" フォーマットでの出力はできません。
+
+  label_tag_testcase: TestLink のテストケースへのリンク
+
+
+
