@@ -1,0 +1,31 @@
+# Redmine TestLink Link
+en:
+  label:
+    testlink_server: TestLink Server Settings
+    address: Site Address
+    version: Version
+    output_settitle: Default Output Items Setting
+  key:
+    report: Test report
+    planreport: Test plan report
+  outitem:
+    toc: Table of Contents 
+    header: Test Suite description 
+    summary: Test Case Summary 
+    body: Test Case Scenario 
+    author: Test Case Author 
+    keyword: Test Case keywords 
+    cfields: Test Case Custom Fields
+    passfail: Test results 
+    metrics: Metrics 
+    testplan: Test Plan description 
+  error:
+    miss_ver: "\"%s\" is not support in TestLink %s"
+    no_id: ID is not set.
+    no_key: Key is not set.
+    invalid_key: Invalid key.
+    invalid_fmt: "\"%s\":Invalid format name. [%s]"
+    not_report: The Indentifer is not support "%s" format.
+
+  label_tag_testcase: Link to a test case of TestLink 
+

@@ -1,0 +1,152 @@
+= Redmine TestLink Link Plugin
+
+This plug-in makes it possible to link TestLink (Test Management System)
+from the Redmine (Bug Tracking System).
+
+
+== Feature
+
+* Uses Wiki Macro, wherever you can use wiki notation
+* It is possible to link to not only the test case
+  but also the project, the test planning and so on.
+* The address of the server of TestLink can be changed in the setting page of this plugin.
+
+
+== Gegging a plugin package
+
+{SourceForge.JP}[http://sourceforge.jp/projects/rp-testlinklink/releases/]
+
+
+== Installation and Setup
+
+1. Extends the dawnloaded package in vender/plugins directory.
+2. Reboot Redmine WEB server.
+3. Open the setting page of "Redmine TestLink Link Plugin"
+4. Change TestLink server address. (Default : http://localhost/testlink)
+5. Set TestLink Version ("1.8" or "1.7")
+
+== Usage
+
+=== testlink(testcase, testreport) Macro
+
+Writes macro like this format: 
+
+    {{testlink(target, ID [, ...])}}
+    {{testcase(ID)}}
+    {{testreport(ID, PlanID [, output_item, ...])}}
+
+In "target", describes the key which specifies an link target.
+The "testcase", "testreport" macro is the one omitted "case", "report" key respectively.
+
+And the arguments since then ID change with the specified key. (Almost key no argument)
+
+The link target which can be used is the following.
+
+    || "Key"     || "Link target"      ||
+    -------------------------------------
+    || case      || Test case          ||
+    || suite     || Test suite         ||
+    || project   || Test project       ||
+    || plan      || Test plan          ||
+    || milestone || Milestone	       ||
+    || build     || Build target       ||
+    || cfield    || Custom field       ||
+    || keyword   || Keyword infomation ||
+    || user      || User infomation    ||
+
+For test result (TestLink 1.8 or later).
+    || "Key"      || "Link target"        ||  Remarks                         ||
+    ---------------------------------------------------------------------------
+    || report     || Test report          || ID need two. Enable output items ||
+    || planreport || Test plan report     || ID need two. Enable output items ||
+    || metrics    || Metrics              ||                                  ||
+    || result     || Test result          || Enable status                    ||
+    || graph	  || Graph of test result ||                                  ||
+
+
+The required ID is changed by specifid key.
+An ID of test case is found out at once, but Others is not.
+Finds it from page adress and so on.
+
+
++ Arguments of "report" and "planreport"
+
+Keys of report and planreport need two ID (ID, PlanID) arguments.
+And can be given output items after them.
+
+    || "Output Item" || "Description"           || "report" || "planreport" ||
+    --------------------------------------------------------------------------
+    || toc           || Table of Contents       ||    Åõ    ||      Åõ      ||
+    || header        || Test Suite description  ||    Åõ    ||      Åõ      ||
+    || summary       || Test Case Summary       ||    Åõ    ||      Åõ      ||
+    || body          || Test Case Scenario      ||    Åõ    ||      Åõ      ||
+    || author        || Test Case Author        ||    Åõ    ||      Åõ      ||
+    || keyword       || Test Case keywords      ||    Åõ    ||      Åõ      ||
+    || cfields       || Test Case Custom Fields ||    Åõ    ||      Åõ      ||
+    || passfail      || Test results            ||    Åõ    ||              ||
+    || metrics       || Metrics                 ||    Åõ    ||              ||
+    || testplan      || Test Plan description   ||          ||      Åõ      ||
+
+If omit output items, set default items which set in this plugin setting page.
+
+
++ Argument of "result"
+
+Can give a target status in the "result" key.
+If omits status, show test cases of all status.
+    || f || Failed Test Cases  ||
+    || b || Blocked Test Cases ||
+    || n || Not run Test Cases ||
+
+
+
+=== "testfile" Macro
+
+"testfile" Macro links to output file in MS Word form, MS Excell and so on.
+(TestLink 1.8 or later)
+
+Writes macro like this: 
+
+    {{testfile(format_name, target, ID [, ...])}}
+
+This macro is same as "testlink" except first argument specified format name.
+Enable key are changed by a specified format name.
+
+    || "Format"          || "Format Name" || "Enable Key"       ||
+    --------------------------------------------------------------
+    || OpenOffice Writer || odt           || report, planreport ||
+    || OpenOffice Calc   || ods           || metrics, result    ||
+    || MS Excel          || xls           || metrics, result    ||
+    || MS Word           || doc           || report, planreport ||
+
+
+
+== Example
+
+  {{testcase(sample-1)}}
+  {{testlink(case, sample-1)}}
+  {{testlink(suite, 2)}}
+  {{testlink(project, 1)}}
+  {{testlink(plan, 5)}}
+  {{testlink(milestone, 1)}}
+  {{testlink(build, 1)}}
+  {{testlink(cfield, 1)}}
+  {{testlink(user, 1)}}
+
+For test result.
+  {{testreport(2,6)}}
+  {{testlink(report, 2, 6)}}
+  {{testreport(2,6, header, summary, toc, body, cfields, author, keyword, passfail, metrics)}}
+  {{testlink(planreport, 2, 6)}} 
+  {{testlink(planreport, 2, 6, header, summary, toc, body, cfields, author, keyword, testplan)}}
+  {{testlink(metrics, 6)}} 
+  {{testlink(result, 6)}}
+  {{testlink(result, 6, f)}}
+  {{testlink(graph, 6)}}
+
+For a file download.
+  {{testfile(odt, report, 2,6)}}
+  {{testfile(odt, planreport, 2, 6, header, summary, toc, body)}} 
+  {{testfile(ods, metrics, 6)}} 
+  {{testfile(ods, result, 6)}}
+  {{testfile(ods, result, 6, n)}}
