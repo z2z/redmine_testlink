@@ -31,108 +31,15 @@ Wiki マクロを使って、 TestLink のテストケース、テストプロジェクトなどへの
 
 == 使用法
 
-=== testlink(testcase, testreport) マクロ
-
-Wiki 編集画面で次のように記述します。
-
-    {{testlink(リンク対象, ID [, ...])}}
-    {{testcase(ID)}}
-    {{testreport(ID, PlanID [, 出力項目...])}}
-
-リンク対象には対象を特定する識別名を記述します。
-testcase, testreport マクロはそれぞれ case, report の識別名を省略したものです。
-
-また、 ID 以降の引数は識別名によって変わります。(通常何も指定しません)
-
-使用できるリンク対象は以下のものです。
-
-    || "識別名"  || "リンク対象"       ||  "備考"           ||
-    ----------------------------------------------------------
-    || case      || テストケース       ||                   ||
-    || suite     || テストスウィート   ||                   ||
-    || project   || テストプロジェクト || TestLink 1.8 以上 ||
-    || plan      || テスト計画         ||                   ||
-    || milestone || マイルストーン     ||                   ||
-    || build     || ビルド情報         ||                   ||
-    || cfield    || カスタムフィールド ||                   ||
-    || keyword   || キーワード情報     ||                   ||
-    || user      || ユーザ情報         ||                   ||
-
-テスト結果用 (TestLink 1.8 以上)
-    || "識別名"   || "リンク対象"       ||  "備考" ||
-    -------------------------------------------------
-    || report     || テストレポート     || ID が 2 つ必要。引数にレポートの出力項目を指定可能。 ||
-    || planreport || テスト計画レポート || ID が 2 つ必要。引数にレポートの出力項目を指定可能。 ||
-    || metrics    || メトリクス         ||         ||
-    || result     || テスト結果の表示   || 引数にステータスを指定可能 ||
-    || graph	  || 結果のグラフ表示   ||         ||
-
-report, planreport で出力項目を省略した場合には設定画面で設定した項目を出力します。
-
-(注) TestLink 側は自動ログインできる状態でないと上手く表示できません。
-
-
-=== testfile マクロ
-
-testfile マクロは MS Word 形式などでの出力ファイルへのリンクです。
-(TestLink 1.8 以上)
-
-Wiki 編集画面で次のように記述します。
-
-    {{testfile(フォーマット名, リンク対象, ID [, ...])}}
-
-このマクロは引数の先頭にフォーマット名を指定することを除き、
-testlink マクロと同一です。
-
-フォーマットにより、指定可能な識別名が変わります。
-
-    || "フォーマット"    || "フォーマット名" || "指定可能な識別名" ||
-    ----------------------------------------------------------------
-    || OpenOffice Writer || odt              || report, planreport ||
-    || OpenOffice Calc   || ods              || metrics, result    ||
-    || MS Excel          || xls              || metrics, result    ||
-    || MS Word           || doc              || report, planreport ||
-
-
-
-== 使用例
-
-  {{testcase(sample-1)}}
-  {{testlink(case, sample-1)}}
-  {{testlink(suite, 2)}}
-  {{testlink(project, 1)}}
-  {{testlink(plan, 5)}}
-  {{testlink(milestone, 1)}}
-  {{testlink(build, 1)}}
-  {{testlink(cfield, 1)}}
-  {{testlink(user, 1)}}
-
-テスト結果用
-  {{testreport(2,6)}}
-  {{testlink(report, 2, 6)}}
-  {{testreport(2,6, header, summary, toc, body, cfields, author, keyword, passfail, metrics)}}
-  {{testlink(planreport, 2, 6)}} 
-  {{testlink(planreport, 2, 6, header, summary, toc, body, cfields, author, keyword, testplan)}}
-  {{testlink(metrics, 6)}} 
-  {{testlink(result, 6)}}
-  {{testlink(result, 6, f)}}
-  {{testlink(graph, 6)}}
-
-ファイルダウンロード用
-  {{testfile(odt, report, 2,6)}}
-  {{testfile(odt, planreport, 2, 6, header, summary, toc, body)}} 
-  {{testfile(ods, metrics, 6)}} 
-  {{testfile(ods, result, 6)}}
-  {{testfile(ods, result, 6, n)}}
-
-
-使用法の詳細は以下をご覧ください。
-* http://sourceforge.jp/projects/rp-testlinklink/wiki/PluginUsage
+使用法は以下をご覧ください。
+* http://www.r-labs.org/projects/rp-testlinklink/wiki/PluginUsage
 
 
 
 == 質問、バグ報告など
 
-質問、バグ報告などありましたら、以下のフォーラムをご利用ください。
-* http://sourceforge.jp/forum/forum.php?forum_id=24286
+不具合報告や要望などありましたら、以下で Defect や Proposal のチケットを発行して下さい。
+http://www.r-labs.org/projects/rp-testlinklink/issues
 
+質問などは以下のフォーラムに記述して下さい。要望などをこちらに書いてもらってもかまいません。
+http://www.r-labs.org/projects/rp-testlinklink/boards
