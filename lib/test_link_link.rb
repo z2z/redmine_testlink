@@ -160,7 +160,7 @@ class TestLinkLink
       viewstr += ":#{@formatname}"
     end
     
-    "<a class='testlinklink' href='#{linkstr}' #{windowstr}>#{viewstr}</a>"
+    "<a class='testlinklink' href='#{linkstr}' #{windowstr}>#{viewstr}</a>".html_safe
   end
   
 

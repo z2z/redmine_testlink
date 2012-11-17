@@ -1,6 +1,6 @@
 
 require 'redmine'
-require 'testlinklink_asset_tag_helper_patch'
+require_dependency 'testlinklink_asset_tag_helper_patch'
 require_dependency 'testlinklink_view_layouts_base_html_head_hook'
 
 Redmine::Plugin.register :redmine_testlinklink do
@@ -10,7 +10,8 @@ Redmine::Plugin.register :redmine_testlinklink do
   version '1.0.0(beta)'
   url 'http://www.r-labs.org/projects/rp-testlinklink/wiki/TestLinkLinkEn'
   author_url 'http://yohshiy.blog.fc2.com/'
-  
+  requires_redmine :version_or_higher => '2'
+
   settings :default => {
     'testlink_address' => 'http://localhost/testlink',
     'testlink_version' => '1.8',
