@@ -7,7 +7,7 @@ Redmine::Plugin.register :redmine_testlinklink do
   name 'Testlink Link plugin'
   author 'M. Yoshida'
   description 'Links the test case, the project and so on from Redmine to TestLink.'
-  version '1.0.0(beta)'
+  version '1.0.0'
   url 'http://www.r-labs.org/projects/rp-testlinklink/wiki/TestLinkLinkEn'
   author_url 'http://yohshiy.blog.fc2.com/'
   requires_redmine :version_or_higher => '2'
