@@ -1,0 +1,10 @@
+h1. Release Note
+
+h2. 1.0.0
+
+# Supports for Redmine 2.X
+
+---
+
+# Redmine 2.X ‘Î‰ž
+
